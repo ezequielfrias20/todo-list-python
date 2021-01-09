@@ -21,18 +21,19 @@ def print_list():
 
 def delete_task(number_to_delete):
     # your code here
-    pass
+    todos.pop(number_to_delete - 1)
 
 def save_todos():
      with open('todos.csv', 'w', newline="\n") as csvfile:
-        writer = csv.writer(csvfile)
+        writer = csv.writer(csvfile, delimiter='\n')
         writer.writerow(todos)
     
 def load_todos():
-    with open('todos.csv', 'w', newline="\n") as csvfile:
-        reader = csv.reader(csvfile, delimiter='\n')
+    with open('todos.csv', 'w', newline="\n") as file:
+        reader = csv.reader(file, delimiter='\n')
         for row in reader:
             todos.append(*row)
+        print("Tareas cargadas")
 # Below this code will only run if the entry file running was app.py
 if __name__ == '__main__':
     while stop == False:
